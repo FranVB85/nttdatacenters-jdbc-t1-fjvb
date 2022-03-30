@@ -25,6 +25,8 @@ public class App
 	private static void Conecction() {
 
 		// Datos de la conexión
+		String driver = "oracle.jdbc.driver.OracleDriver";
+		String url = "jdbc:oracle:thin:@localhost:1521:XE";
 		String usuario = "usuario";
 		String clave = "clave";
 		Connection dbConnection = null;
@@ -33,14 +35,14 @@ public class App
 		try {
 
 			// Driver de la conexión
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Class.forName(driver);
 
 			// Conectar
-			dbConnection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", usuario, clave);
+			dbConnection = DriverManager.getConnection(url, usuario, clave);
 
 			// Consulta
 			statement = dbConnection.createStatement();
-			final String query = "SELECT id, username, password, nombre FROM Usuarios";;
+			final String query = "SELECT id, username, password, nombre FROM Usuarios";
 			final ResultSet rs = statement.executeQuery(query);
 
 			// Tratar los datos
